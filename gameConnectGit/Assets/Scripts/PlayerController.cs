@@ -2,17 +2,9 @@
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Character attributes:")]
-    public int maxHealth;
-    private int currentHealth;
-    public float speed;
-    public float jumpSpeed;
-
-    [Space]
-    [Header("Refereces:")]
-
     private Rigidbody2D rigidBody;
     private Animator animator;
+    private Player player;
 
     private bool facingRight = true;
     private Vector3 localScale;
@@ -22,6 +14,7 @@ public class PlayerController : MonoBehaviour
     { 
         rigidBody = transform.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponentInChildren<Animator>();
+        player = gameObject.GetComponent<Player>();
         localScale = transform.localScale;
     }
 
@@ -31,7 +24,7 @@ public class PlayerController : MonoBehaviour
         // Nhay
         if (Input.GetKeyDown(KeyCode.W) && IsGrounded() && !animator.GetBool("isAttacking") && !animator.GetBool("isShielding"))
         {
-            rigidBody.velocity = Vector2.up * jumpSpeed;
+            rigidBody.velocity = Vector2.up * player.jumpSpeed;
         }
 
         // Danh
@@ -84,7 +77,7 @@ public class PlayerController : MonoBehaviour
 
         if (!animator.GetBool("isAttacking") && !animator.GetBool("isRolling") && !animator.GetBool("isShielding"))
         {
-            rigidBody.velocity = new Vector2(moveInput * speed, rigidBody.velocity.y);
+            rigidBody.velocity = new Vector2(moveInput * player.speed, rigidBody.velocity.y);
         }
         
     }

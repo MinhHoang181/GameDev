@@ -3,17 +3,13 @@ using UnityEngine;
 
 public class BeeController : MonoBehaviour
 {
-    [Header("Enemies stats:")]
-    public int maxHealth;
-    private int currentHealth;
-
     [Space]
     [Header("Reference:")]
     public Animator animator;
-    public LayerMask groundLayer;
 
     private Rigidbody2D rigidBody;
     private EnemyShoot enemyShoot;
+    private Enemy enemy;
 
     private float hurtTime;
     // Start is called before the first frame update
@@ -21,20 +17,28 @@ public class BeeController : MonoBehaviour
     {
         rigidBody = transform.GetComponent<Rigidbody2D>();
         enemyShoot = gameObject.GetComponent<EnemyShoot>();
-        currentHealth = maxHealth;
+        enemy = gameObject.GetComponent<Enemy>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // bi thuong
+        // nhan sat thuong
+        if (enemy.IsDamaged() && !animator.GetBool("isHurting"))
+        {
+            //StartCoroutine(WaitAttackThenTakeDamaged());
+            animator.SetBool("isHurting", true);
+            hurtTime = Time.time + 0.1f;
+            Debug.Log(animator.GetBool("isHurting"));
+        }
         if (animator.GetBool("isHurting") && Time.time > hurtTime)
         {
             animator.SetBool("isHurting", false);
+            enemy.IsDamaged(false);
         }
 
         // Chet
-        if (currentHealth == 0)
+        if (enemy.CurrentHealth() == 0)
         {
             animator.SetBool("isFalling", true);
             rigidBody.velocity = Vector2.down * 1.5f;
@@ -52,18 +56,12 @@ public class BeeController : MonoBehaviour
         }
     }
 
-    // nhan sat thuong
-    public void TakeDamage(int damage)
-    {
-        StartCoroutine(WaitAttackThenTakeDamaged(damage));
-    }
     // cho mot khoan thoi gian roi moi chay animation
-    IEnumerator WaitAttackThenTakeDamaged(int damage)
+    IEnumerator WaitAttackThenTakeDamaged()
     {
         yield return new WaitForSeconds(0.3f);
         animator.SetBool("isHurting", true);
         hurtTime = Time.time + 0.1f;
-        currentHealth -= damage;
     }
 
     // Khi cham mat dat thi set trang thai chet
