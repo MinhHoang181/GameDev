@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class EnemyShoot : MonoBehaviour
 {
+    public float bulletSpeed;
+
     public float startTimeShotsAfterEvent;
     public float startTimeBtwShots;
     private float timeBtwShots;
@@ -24,9 +26,6 @@ public class EnemyShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        // Dieu chinh dan quay theo huong cua chu so huu
-        bullet.transform.localScale = transform.localScale;
         isShooting = false;
 
         // Sau khi Follow player, nghi mot thoi gian roi moi ban dan
@@ -51,7 +50,11 @@ public class EnemyShoot : MonoBehaviour
     IEnumerator SpawnBullet()
     {
         yield return new WaitForSeconds(0.2f);
-        Instantiate(bullet, bulletSpot.transform.position, Quaternion.identity);
+        // Dieu chinh dan quay theo huong cua chu so huu
+        bullet.transform.localScale = transform.localScale;
+        GameObject obj = Instantiate(bullet, bulletSpot.transform.position, Quaternion.identity);
+        // Set gia tri speed va damage cho dan, gui kem GameObject nguoi ban dan
+        obj.GetComponent<BulletMove>().SetBulletInfo(bulletSpeed, enemy.damage, gameObject);
     }
 
     public bool IsShooting()

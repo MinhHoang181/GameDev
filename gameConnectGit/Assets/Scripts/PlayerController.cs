@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 position = transform.position;
         Vector2 direction = Vector2.down;
-        float distance = 0.2f;
+        float distance = 0.3f;
         RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, LayerMask.GetMask("Ground"));
         if (hit.collider != null)
         {

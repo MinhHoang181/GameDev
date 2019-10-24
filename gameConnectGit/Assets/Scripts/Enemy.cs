@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     [Header("Enemies stats:")]
     public int maxHealth;
     private int currentHealth;
+    public int damage;
 
     private bool isDamaged;
     // Start is called before the first frame update
@@ -18,7 +19,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //isDamaged = false;
+
     }
 
     public void TakeDamage(int damage)

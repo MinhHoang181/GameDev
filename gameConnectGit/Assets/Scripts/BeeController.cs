@@ -3,10 +3,7 @@ using UnityEngine;
 
 public class BeeController : MonoBehaviour
 {
-    [Space]
-    [Header("Reference:")]
-    public Animator animator;
-
+    private Animator animator;
     private Rigidbody2D rigidBody;
     private EnemyShoot enemyShoot;
     private Enemy enemy;
@@ -15,6 +12,7 @@ public class BeeController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator = gameObject.GetComponentInChildren<Animator>();
         rigidBody = transform.GetComponent<Rigidbody2D>();
         enemyShoot = gameObject.GetComponent<EnemyShoot>();
         enemy = gameObject.GetComponent<Enemy>();

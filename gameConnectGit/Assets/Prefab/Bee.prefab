@@ -211,6 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  damage: 100
 --- !u!114 &9012029806527242608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,6 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7db22e464b1b4ad3915d3ae32a39f4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletSpeed: 1
   startTimeShotsAfterEvent: 2
   startTimeBtwShots: 3
   bullet: {fileID: 325425280933009041, guid: 1cdf0ee4483b54b3a92f39b4229e8a3b, type: 3}
