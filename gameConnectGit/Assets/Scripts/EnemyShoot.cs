@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EnemyShoot : MonoBehaviour
 {
-    public float startTimeShotsAfterFollow;
+    public float startTimeShotsAfterEvent;
     public float startTimeBtwShots;
     private float timeBtwShots;
     private bool isShooting;
@@ -11,12 +11,14 @@ public class EnemyShoot : MonoBehaviour
     public GameObject bullet;
     public GameObject bulletSpot;
     private EnemyFollow enemyFollow;
+    private Enemy enemy;
 
     // Start is called before the first frame update
     void Start()
     {
-        enemyFollow = transform.GetComponent<EnemyFollow>();
-        timeBtwShots = startTimeShotsAfterFollow;
+        enemy = gameObject.GetComponent<Enemy>();
+        enemyFollow = gameObject.GetComponent<EnemyFollow>();
+        timeBtwShots = startTimeShotsAfterEvent;
     }
 
     // Update is called once per frame
@@ -28,9 +30,9 @@ public class EnemyShoot : MonoBehaviour
         isShooting = false;
 
         // Sau khi Follow player, nghi mot thoi gian roi moi ban dan
-        if (enemyFollow.IsFollow())
+        if (enemyFollow.IsFollow() || enemy.IsDamaged())
         {
-            timeBtwShots = startTimeShotsAfterFollow;
+            timeBtwShots = startTimeShotsAfterEvent;
         }
 
         // Sau mot khoan startTimeBtwShots thi ban dan
