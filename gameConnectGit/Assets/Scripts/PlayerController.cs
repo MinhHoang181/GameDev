@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // Nhay
-        if (Input.GetKeyDown(KeyCode.W) && IsGrounded() && !animator.GetBool("isAttacking") && !animator.GetBool("isShielding"))
+        if (Input.GetKeyDown(KeyCode.W) && IsGrounded() && !animator.GetBool("isAttacking") && !animator.GetBool("isShielding") && !animator.GetBool("isDead"))
         {
             rigidBody.velocity = Vector2.up * player.jumpSpeed;
         }
@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
 
         SetAnimationState();
 
-        if (!animator.GetBool("isAttacking") && !animator.GetBool("isRolling") && !animator.GetBool("isShielding"))
+        if (!animator.GetBool("isAttacking") && !animator.GetBool("isRolling") && !animator.GetBool("isShielding") && !animator.GetBool("isDead"))
         {
             rigidBody.velocity = new Vector2(moveInput * player.speed, rigidBody.velocity.y);
         }
@@ -120,6 +120,11 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isFalling", true);
         }
 
+        // Chet
+        if (player.CurrentHealth() == 0 && !animator.GetBool("isDead"))
+        {
+            animator.SetBool("isDead", true);
+        }
 
     }
 
@@ -138,11 +143,10 @@ public class PlayerController : MonoBehaviour
         {
             localScale.x *= -1;
         }
-        transform.localScale = localScale;
-    }
-
-    public void TakeDamage()
-    {
-
+        if (!animator.GetBool("isDead"))
+        {
+            transform.localScale = localScale;
+        }
+        
     }
 }

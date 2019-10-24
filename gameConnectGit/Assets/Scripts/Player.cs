@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public float speed;
     public float jumpSpeed;
     public int damage;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,4 +23,16 @@ public class Player : MonoBehaviour
         
     }
 
+    public void TakeDamage(int damage)
+    {
+        if (currentHealth > 0)
+        {
+            currentHealth -= damage;
+        }
+    }
+
+    public int CurrentHealth()
+    {
+        return currentHealth;
+    }
 }

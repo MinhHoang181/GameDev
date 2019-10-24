@@ -26,10 +26,8 @@ public class BeeController : MonoBehaviour
         // nhan sat thuong
         if (enemy.IsDamaged() && !animator.GetBool("isHurting"))
         {
-            //StartCoroutine(WaitAttackThenTakeDamaged());
             animator.SetBool("isHurting", true);
             hurtTime = Time.time + 0.1f;
-            Debug.Log(animator.GetBool("isHurting"));
         }
         if (animator.GetBool("isHurting") && Time.time > hurtTime)
         {
@@ -54,14 +52,6 @@ public class BeeController : MonoBehaviour
         {
             animator.SetBool("isShooting", false);
         }
-    }
-
-    // cho mot khoan thoi gian roi moi chay animation
-    IEnumerator WaitAttackThenTakeDamaged()
-    {
-        yield return new WaitForSeconds(0.3f);
-        animator.SetBool("isHurting", true);
-        hurtTime = Time.time + 0.1f;
     }
 
     // Khi cham mat dat thi set trang thai chet

@@ -223,11 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15bd71c2ac36343129334ddaa40ca400, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
   animator: {fileID: 9012029806367498467}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!114 &3494209126890609177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,7 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7db22e464b1b4ad3915d3ae32a39f4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTimeShotsAfterFollow: 2
+  startTimeShotsAfterEvent: 2
   startTimeBtwShots: 3
   bullet: {fileID: 325425280933009041, guid: 1cdf0ee4483b54b3a92f39b4229e8a3b, type: 3}
   bulletSpot: {fileID: 6777346316976967023}
