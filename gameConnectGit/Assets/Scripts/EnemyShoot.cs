@@ -12,14 +12,14 @@ public class EnemyShoot : MonoBehaviour
 
     public GameObject bullet;
     public GameObject bulletSpot;
-    private EnemyFollow enemyFollow;
+    private EnemyAI enemyAI;
     private Enemy enemy;
 
     // Start is called before the first frame update
     void Start()
     {
         enemy = gameObject.GetComponent<Enemy>();
-        enemyFollow = gameObject.GetComponent<EnemyFollow>();
+        enemyAI = gameObject.GetComponent<EnemyAI>();
         timeBtwShots = startTimeShotsAfterEvent;
     }
 
@@ -29,13 +29,13 @@ public class EnemyShoot : MonoBehaviour
         isShooting = false;
 
         // Sau khi Follow player, nghi mot thoi gian roi moi ban dan
-        if (enemyFollow.IsFollow() || enemy.IsDamaged())
+        if (enemyAI.IsFollow() || enemy.IsDamaged())
         {
             timeBtwShots = startTimeShotsAfterEvent;
         }
 
         // Sau mot khoan startTimeBtwShots thi ban dan
-        if (timeBtwShots <= 0 && !enemyFollow.IsFollow())
+        if (timeBtwShots <= 0 && !enemyAI.IsFollow())
         {
             isShooting = true;
             StartCoroutine(SpawnBullet());
