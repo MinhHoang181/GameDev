@@ -1,10 +1,11 @@
 ﻿<Properties StartupConfiguration="{F628C700-89E2-ED3A-4AAD-F1E6BACC1CB9}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/EnemyShoot.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/EnemyAI.cs">
     <Files>
-      <File FileName="Assets/Scripts/PlayerController.cs" Line="55" Column="9" />
-      <File FileName="Assets/Scripts/BeeController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/EnemyShoot.cs" Line="33" Column="56" />
-      <File FileName="Assets/Scripts/Enemy.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/EnemyFollow.cs" Line="16" Column="9" />
+      <File FileName="Assets/Scripts/BeeController.cs" Line="43" Column="19" />
+      <File FileName="Assets/Scripts/EnemyAI.cs" Line="104" Column="9" />
+      <File FileName="Assets/Scripts/PlayerController.cs" Line="81" Column="13" />
+      <File FileName="Assets/Scripts/WhereToLook.cs" Line="18" Column="9" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -12,7 +13,7 @@
           <Node name="gameConnectGit" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="EnemyShoot.cs" selected="True" />
+                <Node name="EnemyAI.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -22,7 +23,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="3dc00e51-87bf-423d-bb9d-bde68147abe9" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="eb0e4baf-2b88-4ce5-94d3-4d1a8a0ac2db" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

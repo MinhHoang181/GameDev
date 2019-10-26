@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemies
   - Shield
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - 
   - Ground
   - Enemies
-  - 
+  - Background
   - 
   - 
   - 
@@ -42,6 +43,9 @@ TagManager:
   m_SortingLayers:
   - name: Background
     uniqueID: 1295148333
+    locked: 0
+  - name: Background Object
+    uniqueID: 1252330643
     locked: 0
   - name: Platforms
     uniqueID: 3569626889

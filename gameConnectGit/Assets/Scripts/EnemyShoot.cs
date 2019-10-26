@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class EnemyShoot : MonoBehaviour
 {
+    public float bulletSpeed;
+
     public float startTimeShotsAfterEvent;
     public float startTimeBtwShots;
     private float timeBtwShots;
@@ -10,33 +12,30 @@ public class EnemyShoot : MonoBehaviour
 
     public GameObject bullet;
     public GameObject bulletSpot;
-    private EnemyFollow enemyFollow;
+    private EnemyAI enemyAI;
     private Enemy enemy;
 
     // Start is called before the first frame update
     void Start()
     {
         enemy = gameObject.GetComponent<Enemy>();
-        enemyFollow = gameObject.GetComponent<EnemyFollow>();
+        enemyAI = gameObject.GetComponent<EnemyAI>();
         timeBtwShots = startTimeShotsAfterEvent;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        // Dieu chinh dan quay theo huong cua chu so huu
-        bullet.transform.localScale = transform.localScale;
         isShooting = false;
 
         // Sau khi Follow player, nghi mot thoi gian roi moi ban dan
-        if (enemyFollow.IsFollow() || enemy.IsDamaged())
+        if (enemyAI.IsFollow() || enemy.IsDamaged())
         {
             timeBtwShots = startTimeShotsAfterEvent;
         }
 
         // Sau mot khoan startTimeBtwShots thi ban dan
-        if (timeBtwShots <= 0 && !enemyFollow.IsFollow())
+        if (timeBtwShots <= 0 && !enemyAI.IsFollow())
         {
             isShooting = true;
             StartCoroutine(SpawnBullet());
@@ -51,7 +50,11 @@ public class EnemyShoot : MonoBehaviour
     IEnumerator SpawnBullet()
     {
         yield return new WaitForSeconds(0.2f);
-        Instantiate(bullet, bulletSpot.transform.position, Quaternion.identity);
+        // Dieu chinh dan quay theo huong cua chu so huu
+        bullet.transform.localScale = transform.localScale;
+        GameObject obj = Instantiate(bullet, bulletSpot.transform.position, Quaternion.identity);
+        // Set gia tri speed va damage cho dan, gui kem GameObject nguoi ban dan
+        obj.GetComponent<BulletMove>().SetBulletInfo(bulletSpeed, enemy.damage, gameObject);
     }
 
     public bool IsShooting()

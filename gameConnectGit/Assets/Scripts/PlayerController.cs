@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W) && IsGrounded() && !animator.GetBool("isAttacking") && !animator.GetBool("isShielding") && !animator.GetBool("isDead"))
         {
             rigidBody.velocity = Vector2.up * player.jumpSpeed;
+            animator.SetBool("isJumping", true);
         }
 
         // Danh
@@ -36,7 +37,7 @@ public class PlayerController : MonoBehaviour
             }
         }
             // Kiem tra khi nao ket thuc animmation Attack thi set isAttack thanh false lai
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack_1") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack_1") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f || animator.GetBool("isFalling"))
         {
             animator.SetBool("isAttacking", false);
         }
@@ -110,11 +111,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isJumping", false);
             animator.SetBool("isFalling", false);
         }
-        if (rigidBody.velocity.y > 0)
-        {
-            animator.SetBool("isJumping", true);
-        }
-        if (rigidBody.velocity.y < 0)
+        if (rigidBody.velocity.y < 0 && !IsGrounded())
         {
             animator.SetBool("isJumping", false);
             animator.SetBool("isFalling", true);
