@@ -3,9 +3,8 @@
     <Files>
       <File FileName="Assets/Scripts/EnemyFollow.cs" Line="16" Column="9" />
       <File FileName="Assets/Scripts/BeeController.cs" Line="43" Column="19" />
-      <File FileName="Assets/Scripts/EnemyAI.cs" Line="104" Column="9" />
-      <File FileName="Assets/Scripts/PlayerController.cs" Line="81" Column="13" />
-      <File FileName="Assets/Scripts/WhereToLook.cs" Line="18" Column="9" />
+      <File FileName="Assets/Scripts/EnemyAI.cs" Line="8" Column="27" />
+      <File FileName="Assets/Scripts/EnemyShoot.cs" Line="38" Column="34" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -23,7 +22,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="eb0e4baf-2b88-4ce5-94d3-4d1a8a0ac2db" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="c73bd585-0f64-4927-9a2c-af439a092628" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

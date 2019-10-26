@@ -29,13 +29,13 @@ public class EnemyShoot : MonoBehaviour
         isShooting = false;
 
         // Sau khi Follow player, nghi mot thoi gian roi moi ban dan
-        if (enemyAI.IsFollow() || enemy.IsDamaged())
+        if (!enemyAI.CanShoot() || enemy.IsDamaged())
         {
             timeBtwShots = startTimeShotsAfterEvent;
         }
 
         // Sau mot khoan startTimeBtwShots thi ban dan
-        if (timeBtwShots <= 0 && !enemyAI.IsFollow())
+        if (timeBtwShots <= 0 && enemyAI.IsFollow())
         {
             isShooting = true;
             StartCoroutine(SpawnBullet());

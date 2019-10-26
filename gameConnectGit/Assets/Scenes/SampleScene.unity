@@ -300,12 +300,12 @@ PrefabInstance:
     - target: {fileID: 381057793830721514, guid: 02a0004d2830c42dc91ceda8df952d5a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2.13
       objectReference: {fileID: 0}
     - target: {fileID: 381057793830721514, guid: 02a0004d2830c42dc91ceda8df952d5a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.11
       objectReference: {fileID: 0}
     - target: {fileID: 381057793830721514, guid: 02a0004d2830c42dc91ceda8df952d5a,
         type: 3}
@@ -725,7 +725,7 @@ GameObject:
   - component: {fileID: 952371409}
   - component: {fileID: 952371410}
   m_Layer: 0
-  m_Name: A+
+  m_Name: A*
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -831,7 +831,7 @@ MonoBehaviour:
     seed: 0
     pivotPointRoot: {fileID: 0}
     spreadOutCount: 1
-  showGraphs: 0
+  showGraphs: 1
 --- !u!1 &1003243761
 GameObject:
   m_ObjectHideFlags: 0
