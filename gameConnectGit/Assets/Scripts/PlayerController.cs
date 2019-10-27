@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
 
         if (!animator.GetBool("isAttacking") && !animator.GetBool("isRolling") && !animator.GetBool("isShielding") && !animator.GetBool("isDead"))
         {
-            rigidBody.velocity = new Vector2(moveInput * player.speed, rigidBody.velocity.y);
+            rigidBody.velocity = new Vector2(moveInput * player.CurrentSpeed(), rigidBody.velocity.y);
         }
         
     }
@@ -91,11 +91,8 @@ public class PlayerController : MonoBehaviour
     // Kiem tra Character co tren mat dat ko
     bool IsGrounded()
     {
-        Vector2 position = transform.position;
-        Vector2 direction = Vector2.down;
-        float distance = 0.2f;
-        RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, LayerMask.GetMask("Ground"));
-        if (hit.collider != null)
+        RaycastHit2D hitDown = Physics2D.Raycast(transform.position, Vector2.down, 0.2f, LayerMask.GetMask("Ground"));
+        if (hitDown.collider != null)
         {
             return true;
         }

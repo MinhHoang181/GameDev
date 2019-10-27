@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2117877358402002580}
   - component: {fileID: 4754842509084843964}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,7 +66,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7660976506271775140}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Attack Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 3746895851406450194}
   - component: {fileID: 8117782509741389079}
   - component: {fileID: 4765342559969172151}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Knight
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 5882643064705880254}
   - component: {fileID: 5882643064705880252}
   - component: {fileID: 5882643064705880255}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -328,7 +328,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5882643065151897997}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Sprites
   m_TagString: Untagged
   m_Icon: {fileID: 0}

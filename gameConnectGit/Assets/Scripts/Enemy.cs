@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public int maxHealth;
     private int currentHealth;
     public int damage;
+    public float speed = 1f;
 
     private bool isDamaged;
     // Start is called before the first frame update

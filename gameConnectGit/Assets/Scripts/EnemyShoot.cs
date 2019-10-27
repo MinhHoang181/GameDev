@@ -54,7 +54,7 @@ public class EnemyShoot : MonoBehaviour
         bullet.transform.localScale = transform.localScale;
         GameObject obj = Instantiate(bullet, bulletSpot.transform.position, Quaternion.identity);
         // Set gia tri speed va damage cho dan, gui kem GameObject nguoi ban dan
-        obj.GetComponent<BulletMove>().SetBulletInfo(bulletSpeed, enemy.damage, gameObject);
+        obj.GetComponent<BulletMove>().SetBulletInfo(bulletSpeed, enemy.damage, gameObject, bullet);
     }
 
     public bool IsShooting()

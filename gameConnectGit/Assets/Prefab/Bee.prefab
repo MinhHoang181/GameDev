@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 381057793830721514}
   - component: {fileID: 4043742943892834307}
   - component: {fileID: 7448698710326204381}
+  - component: {fileID: 247281232}
   - component: {fileID: 806499462024706854}
   - component: {fileID: 381057793830721513}
   - component: {fileID: 5270053292262527348}
@@ -166,7 +167,6 @@ Transform:
   m_Children:
   - {fileID: 381057792607508475}
   - {fileID: 4850746733696575575}
-  - {fileID: 4226884532209727500}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -184,6 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   damage: 100
+  speed: 0.5
 --- !u!114 &7448698710326204381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,17 +197,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05d7e90a0cc5a42419327a08e8ec6048, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
   nextWayPointDistance: 0.1
   startReachedDistance: 2
   endReachedDistance: 1
   canComeBackSpawnPosition: 1
   canWandering: 1
   timePerWandering: 2
-  minX: -0.78
-  maxX: 1.34
+  minX: -1
+  maxX: 1
   minY: -0.5
-  maxY: 0.21
+  maxY: 0.5
+--- !u!114 &247281232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381057793830721509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 485097d5512b8406996f257fd3be8381, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canFly: 1
 --- !u!114 &806499462024706854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,7 +308,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.03252355, y: -0.006245494}
@@ -330,34 +343,4 @@ Transform:
   m_Children: []
   m_Father: {fileID: 381057793830721514}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5194380276087416858
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4226884532209727500}
-  m_Layer: 9
-  m_Name: PositionTarget
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4226884532209727500
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5194380276087416858}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 381057793830721514}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

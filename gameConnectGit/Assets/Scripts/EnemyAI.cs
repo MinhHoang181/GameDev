@@ -5,7 +5,6 @@ using Pathfinding;
 
 public class EnemyAI : MonoBehaviour
 {
-    public float speed = 1f;
     public float nextWayPointDistance = 0.1f;
 
     public float startReachedDistance = 2f;
@@ -24,19 +23,22 @@ public class EnemyAI : MonoBehaviour
     public float minY = -0.5f;
     public float maxY = 0.5f;
 
-    bool isWandering;
+    bool isWandering = true;
     Vector2 posBeforeWandering;
     Vector2 randomPos;
 
     Transform target;
+    Transform playerTarget;
     Rigidbody2D rb;
     Seeker seeker;
     Path path;
+    EnemyMove enemyMove;
 
     int currentWayPoint = 0;
 
     bool isFollow = false;
     bool canShoot = false;
+    bool isIdle = false;
     bool facingLeft = true;
 
     Vector3 localScale;
@@ -46,15 +48,16 @@ public class EnemyAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        playerTarget = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        target = playerTarget;
         rb = gameObject.GetComponent<Rigidbody2D>();
         localScale = transform.localScale;
         seeker = gameObject.GetComponent<Seeker>();
+        enemyMove = gameObject.GetComponent<EnemyMove>();
 
         InvokeRepeating("UpdatePath", 0f, 0.5f);
         posBeforeWandering = transform.position;
         spawnPosition = transform.position;
-        randomPos = new Vector3(posBeforeWandering.x + Random.Range(minX, maxX), posBeforeWandering.y + Random.Range(minY, maxY));
     }
 
     void UpdatePath()
@@ -93,7 +96,7 @@ public class EnemyAI : MonoBehaviour
         {
             if (distanceToTarget > endReachedDistance)
             {
-                rb.position = Vector2.MoveTowards(rb.position, path.vectorPath[currentWayPoint], speed * Time.deltaTime);
+                enemyMove.Move(path.vectorPath[currentWayPoint]);
                 isFollow = true;
                 canShoot = false;
             } else
@@ -104,16 +107,16 @@ public class EnemyAI : MonoBehaviour
             isWandering = false;
         } else
         {
-
             if (canComeBackSpawnPosition)
             {
-                if (Vector2.Distance(rb.position, spawnPosition) > 0 && !isWandering)
+                if (Vector2.Distance(rb.position, spawnPosition) > 0.5f && !isWandering)
                 {
                     isComingBack = true;
                 }
                 else
                 {
                     isComingBack = false;
+                    gameObject.GetComponent<Collider2D>().isTrigger = false;
                 }
             }
             isFollow = false;
@@ -123,17 +126,17 @@ public class EnemyAI : MonoBehaviour
                 posBeforeWandering = rb.position;
                 randomPos = rb.position;
             }
-            if (!isComingBack)
+            if (!isComingBack && canWandering)
             {
                 isWandering = true;
             } 
         }
 
-        // Di chuyen ve spawn
         if (canComeBackSpawnPosition && isComingBack)
         {
             ComeBackSpawnPosition();
         }
+        
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWayPoint]);
         if (distance < nextWayPointDistance)
@@ -148,7 +151,7 @@ public class EnemyAI : MonoBehaviour
         if (canWandering && !isComingBack)
         {
             Wandering();
-        }    
+        }
     }
 
     // Quay mat ve phia Player khi khong wandering va khong quay ve spawn
@@ -172,6 +175,21 @@ public class EnemyAI : MonoBehaviour
     public bool IsFollow()
     {
         return isFollow;
+    }
+
+    public bool IsWandering()
+    {
+        return isWandering;
+    }
+
+    public bool IsComingBack()
+    {
+        return isComingBack;
+    }
+
+    public bool IsIdle()
+    {
+        return isIdle;
     }
 
     public bool CanShoot()
@@ -216,16 +234,19 @@ public class EnemyAI : MonoBehaviour
         if (isWandering)
         {
             //Tao vi tri ngau nhien
-            if (Vector2.Distance(transform.position, randomPos) <= 0.01)
+                // Neu khoang canh toa do enemy voi toa do random <= 0.01f va enemy biet bay HOAC enemy khong biet bay va khoang canh toa do x giua enemy va random <= 0.01f
+            if (Vector2.Distance(transform.position, randomPos) <= 0.01f && enemyMove.canFly || !enemyMove.canFly && (transform.position.x - randomPos.x) < 0.01f)
             {
                 if (timeWaitWandering <= 0)
                 {
                     timeWaitWandering = Time.time + timePerWandering;
+                    isIdle = true;
                 }                
                 if (Time.time > timeWaitWandering)
                 {
                     randomPos = new Vector3(posBeforeWandering.x + Random.Range(minX, maxX), posBeforeWandering.y + Random.Range(minY, maxY));
                     timeWaitWandering = 0;
+                    isIdle = false;
                 }   
             }
             // Quay mat ve phia vi tri dinh di toi
@@ -236,12 +257,13 @@ public class EnemyAI : MonoBehaviour
             {
                 facingLeft = true;
             }
-            rb.position = Vector2.MoveTowards(rb.position, randomPos, speed * Time.deltaTime);
+            enemyMove.Wandering(randomPos);
         }
     }
 
     void ComeBackSpawnPosition()
     {
+        
         if (transform.position.x < spawnPosition.x)
         {
             facingLeft = false;
@@ -250,7 +272,20 @@ public class EnemyAI : MonoBehaviour
         {
             facingLeft = true;
         }
-        rb.position = Vector2.MoveTowards(rb.position, spawnPosition, speed * Time.deltaTime);
+        if (enemyMove.canFly)
+        {
+            gameObject.GetComponent<Collider2D>().isTrigger = true;
+        }
+        enemyMove.Move(spawnPosition);
+
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") && isWandering && enemyMove.canFly)
+        {
+            randomPos = new Vector3(posBeforeWandering.x + Random.Range(minX, maxX), posBeforeWandering.y + Random.Range(minY, maxY));
+            enemyMove.Move(randomPos);
+        }
+    }
 }

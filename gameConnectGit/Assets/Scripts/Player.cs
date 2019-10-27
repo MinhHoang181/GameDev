@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public int maxHealth;
     private int currentHealth;
     public float speed;
+    private float currentSpeed;
     public float jumpSpeed;
     public int damage;
 
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        currentSpeed = speed;
     }
 
     // Update is called once per frame
@@ -31,8 +33,25 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void EffectSlow(float slowPercent, float timeSlow)
+    {
+        currentSpeed *= slowPercent;
+        StartCoroutine(SpeedNormal(timeSlow));
+    }
+
+    IEnumerator SpeedNormal(float time)
+    {
+        yield return new WaitForSeconds(time);
+        currentSpeed = speed;
+    }
+
     public int CurrentHealth()
     {
         return currentHealth;
+    }
+
+    public float CurrentSpeed()
+    {
+        return currentSpeed;
     }
 }
