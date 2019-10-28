@@ -139,6 +139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 500
+  healthRegen: 10
+  timeWaitRegen: 5
   speed: 1
   jumpSpeed: 3
   damage: 20

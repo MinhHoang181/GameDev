@@ -131,7 +131,7 @@ Transform:
   m_GameObject: {fileID: 4471588352205000883}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 596033048184009711}
   m_Father: {fileID: 0}
@@ -203,11 +203,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 616337530791746042}
     m_Modifications:
-    - target: {fileID: 518809291875668064, guid: 5911a46a0cb05445cb1652e4295e40b3,
-        type: 3}
-      propertyPath: m_Name
-      value: SpiderBullet
-      objectReference: {fileID: 0}
     - target: {fileID: 518809291875668063, guid: 5911a46a0cb05445cb1652e4295e40b3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -272,6 +267,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 518809291875668064, guid: 5911a46a0cb05445cb1652e4295e40b3,
+        type: 3}
+      propertyPath: m_Name
+      value: SpiderBullet
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7951650588521861531, guid: 5911a46a0cb05445cb1652e4295e40b3, type: 3}

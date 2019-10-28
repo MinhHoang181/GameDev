@@ -53,7 +53,7 @@ public class BeeController : MonoBehaviour
     }
 
     // Khi cham mat dat thi set trang thai chet
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") && animator.GetBool("isFalling"))
         {

@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
     // Kiem tra Character co tren mat dat ko
     bool IsGrounded()
     {
-        RaycastHit2D hitDown = Physics2D.Raycast(transform.position, Vector2.down, 0.2f, LayerMask.GetMask("Ground"));
+        RaycastHit2D hitDown = Physics2D.Raycast(transform.position, Vector2.down, 0.3f, LayerMask.GetMask("Ground"));
         if (hitDown.collider != null)
         {
             return true;

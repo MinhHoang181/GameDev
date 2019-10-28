@@ -7,7 +7,7 @@ public class HealthBar : MonoBehaviour
 	private Transform bar;
     private Player player;
     private float health;
-    private float healthTakeDamage;
+    private float healthPercent;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,12 +19,8 @@ public class HealthBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthTakeDamage = (float)player.CurrentHealth() / (float)player.maxHealth;
-        if (health > healthTakeDamage)
-        {
-            setSize(healthTakeDamage);
-            health = healthTakeDamage;
-        }
+        healthPercent = (float)player.CurrentHealth() / (float)player.maxHealth;
+        setSize(healthPercent);
     }
 
     public void setSize(float sizeNormalized)

@@ -7,6 +7,9 @@ public class Player : MonoBehaviour
     [Header("Character attributes:")]
     public int maxHealth;
     private int currentHealth;
+    public int healthRegen;
+    public float timeWaitRegen;
+    private float timeWait;
     public float speed;
     private float currentSpeed;
     public float jumpSpeed;
@@ -17,12 +20,21 @@ public class Player : MonoBehaviour
     {
         currentHealth = maxHealth;
         currentSpeed = speed;
+        InvokeRepeating("HealthRegen", 0f, 1f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+            
+    }
+
+    void HealthRegen()
+    {
+        if (Time.time > timeWait && currentHealth < maxHealth && currentHealth > 0)
+        {
+            currentHealth = Mathf.Min(currentHealth + healthRegen, maxHealth);
+        }
     }
 
     public void TakeDamage(int damage)
@@ -30,6 +42,7 @@ public class Player : MonoBehaviour
         if (currentHealth > 0)
         {
             currentHealth -= damage;
+            timeWait = Time.time + timeWaitRegen;
         }
     }
 
