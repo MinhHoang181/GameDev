@@ -14,6 +14,7 @@ public class BulletMove : MonoBehaviour
     private Vector3 target;
     private Animator animator;
     private Player player;
+    private PlayerDefence playerDefence;
 
     private float temp;
     // Start is called before the first frame update
@@ -22,6 +23,7 @@ public class BulletMove : MonoBehaviour
         rigidBody = transform.GetComponent<Rigidbody2D>();
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>().position;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        playerDefence = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDefence>();
         animator = gameObject.GetComponentInChildren<Animator>();
         temp = player.speed;
     }
@@ -78,13 +80,6 @@ public class BulletMove : MonoBehaviour
         bullet = bulletSpawn;
     }
 
-    // Lam cham toc do Player
-    IEnumerator EffectSlow()
-    {
-        yield return new WaitForSeconds(1f);
-        player.speed = temp;
-    }
-
     // Xoa khi ra khoi tam nhin
     private void OnBecameInvisible()
     {
@@ -96,13 +91,17 @@ public class BulletMove : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<Player>().TakeDamage(bulletDamage);
+            if (!playerDefence.IsDefence() || bullet.name == "BeeBullet")
+            {
+                collision.gameObject.GetComponent<Player>().TakeDamage(bulletDamage);
+                collision.gameObject.GetComponent<PlayerController>().IsHurt();
+            }
             if (bullet.name == "SpiderWeb")
             {
                 collision.gameObject.GetComponent<Player>().EffectSlow(0.5f,1f);
             }
         }
-        if (collision.gameObject.tag != "Enemies" && collision.gameObject.tag != "Bullet")
+        if (collision.gameObject.tag != "Enemies" && collision.gameObject.tag != "Bullet" && collision.gameObject.tag != "Map")
         {
             if (bullet.name == "BeeBullet")
             {

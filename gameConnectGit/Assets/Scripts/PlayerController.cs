@@ -9,11 +9,15 @@ public class PlayerController : MonoBehaviour
     private bool facingRight = true;
     private Vector3 localScale;
 
+    private bool isHurt = false;
+    private Animator bloodAnimator;
+
     // Start is called before the first frame update
     void Start()
     { 
         rigidBody = transform.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponentInChildren<Animator>();
+        bloodAnimator = transform.Find("Sprites").Find("Blood").GetComponent<Animator>();
         player = gameObject.GetComponent<Player>();
         localScale = transform.localScale;
     }
@@ -60,6 +64,17 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("isShielding", false);
         }
+
+        // Bi thuong
+        if (isHurt == true && !animator.GetBool("isDead"))
+        {
+            bloodAnimator.SetBool("isHurt", true);
+        }
+        if (bloodAnimator.GetCurrentAnimatorStateInfo(0).IsName("Blood") && bloodAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        {
+            bloodAnimator.SetBool("isHurt", false);
+            isHurt = false;
+        }
     }
 
     private void FixedUpdate()
@@ -103,7 +118,7 @@ public class PlayerController : MonoBehaviour
     void SetAnimationState()
     {
         // Set Jump va Fall
-        if (rigidBody.velocity.y == 0)
+        if (IsGrounded())
         {
             animator.SetBool("isJumping", false);
             animator.SetBool("isFalling", false);
@@ -141,6 +156,12 @@ public class PlayerController : MonoBehaviour
         {
             transform.localScale = localScale;
         }
-        
+    }
+
+
+    public void IsHurt()
+    {
+        if (isHurt == false)
+            isHurt = true;
     }
 }

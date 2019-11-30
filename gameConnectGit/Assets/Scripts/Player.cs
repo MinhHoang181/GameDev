@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     public float jumpSpeed;
     public int damage;
 
+    private bool isDead = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +43,7 @@ public class Player : MonoBehaviour
     {
         if (currentHealth > 0)
         {
-            currentHealth -= damage;
+            currentHealth = Mathf.Max(0, currentHealth - damage);
             timeWait = Time.time + timeWaitRegen;
         }
     }
@@ -62,9 +64,18 @@ public class Player : MonoBehaviour
     {
         return currentHealth;
     }
+    public void SetCurrentHealth(int health)
+    {
+        currentHealth = health;
+    }
 
     public float CurrentSpeed()
     {
         return currentSpeed;
+    }
+
+    public bool IsDead()
+    {
+        return isDead;
     }
 }

@@ -19,7 +19,7 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
         // Danh
-        if (!animator.GetBool("isAttacking"))
+        if (!animator.GetBool("isAttacking") && !animator.GetBool("isFalling"))
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {

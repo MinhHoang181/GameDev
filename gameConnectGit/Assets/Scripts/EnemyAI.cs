@@ -33,6 +33,9 @@ public class EnemyAI : MonoBehaviour
     Seeker seeker;
     Path path;
     EnemyMove enemyMove;
+    Transform textName;
+    Transform textLevel;
+    bool changeFacingText = false;
 
     int currentWayPoint = 0;
 
@@ -54,10 +57,14 @@ public class EnemyAI : MonoBehaviour
         localScale = transform.localScale;
         seeker = gameObject.GetComponent<Seeker>();
         enemyMove = gameObject.GetComponent<EnemyMove>();
+        textName = transform.Find("Name");
+        textLevel = transform.Find("Level");
 
         InvokeRepeating("UpdatePath", 0f, 0.5f);
         posBeforeWandering = transform.position;
         spawnPosition = transform.position;
+
+        endReachedDistance += Random.Range(-0.25f, 0.25f) * endReachedDistance;
     }
 
     void UpdatePath()
@@ -170,6 +177,19 @@ public class EnemyAI : MonoBehaviour
             localScale.x *= -1;
         }
         transform.localScale = localScale;
+
+        if (facingLeft == false && changeFacingText == false)
+        {
+            textName.localScale = new Vector3(textName.localScale.x * -1, textName.localScale.y);
+            textLevel.localScale = new Vector3(textLevel.localScale.x * -1, textLevel.localScale.y);
+            changeFacingText = true;
+        }
+        else if (facingLeft == true && changeFacingText == true)
+        {
+            textName.localScale = new Vector3(textName.localScale.x * -1, textName.localScale.y);
+            textLevel.localScale = new Vector3(textLevel.localScale.x * -1, textLevel.localScale.y);
+            changeFacingText = false;
+        }
     }
 
     public bool IsFollow()

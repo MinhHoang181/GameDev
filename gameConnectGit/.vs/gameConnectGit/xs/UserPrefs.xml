@@ -1,23 +1,24 @@
 ﻿<Properties StartupConfiguration="{F628C700-89E2-ED3A-4AAD-F1E6BACC1CB9}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/BeeController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/InputName.cs">
     <Files>
-      <File FileName="Assets/Scripts/BeeController.cs" Line="55" Column="48" />
-      <File FileName="Assets/Scripts/SmallSpiderController.cs" />
-      <File FileName="Assets/Scripts/EnemyShoot.cs" />
-      <File FileName="Assets/Scripts/BulletMove.cs" Line="102" Column="79" />
-      <File FileName="Assets/Scripts/Player.cs" Line="36" Column="79" />
-      <File FileName="Assets/GameController.cs" Line="25" Column="99" />
-      <File FileName="Assets/Scripts/EnemyAI.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/HealthBar.cs" Line="23" Column="9" />
-      <File FileName="Assets/Scripts/PlayerController.cs" Line="94" Column="87" />
+      <File FileName="Assets/Scripts/GameController.cs" Line="58" Column="63" />
+      <File FileName="Assets/Scripts/MapController.cs" Line="36" Column="1" />
+      <File FileName="Assets/Scripts/Enemy.cs" Line="32" Column="37" />
+      <File FileName="Assets/Scripts/LevelSystem.cs" Line="10" Column="30" />
+      <File FileName="Assets/Scripts/InputName.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="gameConnectGit" expanded="True">
             <Node name="Assets" expanded="True">
+              <Node name="AstarPathfindingProject" expanded="True">
+                <Node name="Core" expanded="True">
+                  <Node name="Misc" expanded="True" />
+                </Node>
+              </Node>
               <Node name="Scripts" expanded="True">
-                <Node name="BeeController.cs" selected="True" />
+                <Node name="InputName.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -27,7 +28,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="1344cfb9-61f9-47df-9c6f-a31438277f7e" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="55451920-8698-4a96-91a6-b51653bba179" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
