@@ -29,13 +29,13 @@ public class EnemyShoot : MonoBehaviour
         isShooting = false;
 
         // Sau khi Follow player, nghi mot thoi gian roi moi ban dan
-        if (enemyAI.IsFollow() || enemy.IsDamaged())
+        if (!enemyAI.CanShoot() || enemy.IsDamaged())
         {
             timeBtwShots = startTimeShotsAfterEvent;
         }
 
         // Sau mot khoan startTimeBtwShots thi ban dan
-        if (timeBtwShots <= 0 && !enemyAI.IsFollow())
+        if (timeBtwShots <= 0 && enemyAI.IsFollow())
         {
             isShooting = true;
             StartCoroutine(SpawnBullet());
@@ -54,7 +54,7 @@ public class EnemyShoot : MonoBehaviour
         bullet.transform.localScale = transform.localScale;
         GameObject obj = Instantiate(bullet, bulletSpot.transform.position, Quaternion.identity);
         // Set gia tri speed va damage cho dan, gui kem GameObject nguoi ban dan
-        obj.GetComponent<BulletMove>().SetBulletInfo(bulletSpeed, enemy.damage, gameObject);
+        obj.GetComponent<BulletMove>().SetBulletInfo(bulletSpeed, enemy.damage, gameObject, bullet);
     }
 
     public bool IsShooting()

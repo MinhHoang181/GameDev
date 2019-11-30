@@ -53,14 +53,14 @@ public class BeeController : MonoBehaviour
     }
 
     // Khi cham mat dat thi set trang thai chet
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") && animator.GetBool("isFalling"))
         {
             animator.SetBool("isFalling", false);
             animator.SetBool("isDying", true);
             rigidBody.simulated = false;
-            Destroy(gameObject.GetComponent<EnemyFollow>());
+            Destroy(gameObject.GetComponent<EnemyAI>());
             Destroy(gameObject.GetComponent<EnemyShoot>());
             StartCoroutine(RemoveGameObject());
         }
